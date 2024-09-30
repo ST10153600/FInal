@@ -31,6 +31,7 @@ class SignUp : AppCompatActivity() {
         confirmPasswordInput = findViewById(R.id.confirmPasswordInput)
         signUpButton = findViewById(R.id.signUpButton)
 
+
         // Sign-Up button onClick listener
         signUpButton.setOnClickListener {
             val fullName = fullNameInput.text.toString()
@@ -44,7 +45,9 @@ class SignUp : AppCompatActivity() {
         }
     }
 
-    private fun validateInput(fullName: String, email: String, password: String, confirmPassword: String): Boolean {
+
+
+    fun validateInput(fullName: String, email: String, password: String, confirmPassword: String): Boolean {
         return when {
             fullName.isEmpty() -> {
                 fullNameInput.error = "Full Name is required"
@@ -69,6 +72,10 @@ class SignUp : AppCompatActivity() {
             else -> true
         }
     }
+
+    // If all credentials are valid
+    // We use the function createUserWithEmailAndPassword.
+    // Using the auth object, pass in the email address.
 
     private fun createAccount(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)

@@ -13,11 +13,16 @@ import com.google.firebase.auth.FirebaseUser
 
 class Login: AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    lateinit var auth: FirebaseAuth
     private lateinit var emailInput: EditText
     private lateinit var passwordInput: EditText
     private lateinit var loginButton: Button
     private lateinit var registerText: TextView
+
+    //The following information was taken from Geeks for Geeks
+    //Author: ayushpandey
+    //Link: https://www.geeksforgeeks.org/login-and-registration-in-android-using-firebase-in-kotlin/
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +55,7 @@ class Login: AppCompatActivity() {
         }
     }
 
-    private fun loginUser(email: String, password: String) {
+    fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {

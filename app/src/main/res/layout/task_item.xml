@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#D3E8FF"
+    android:background="@color/white"
     android:padding="20dp">
 
     <TextView
@@ -34,4 +34,13 @@
         android:layout_height="wrap_content"
         android:text="Description"
         android:textSize="14sp" />
+
+    <!-- Countdown Timer -->
+    <TextView
+        android:id="@+id/countdownTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Countdown"
+        android:textSize="16sp"
+        android:textColor="#FF0000"/>
 </LinearLayout>

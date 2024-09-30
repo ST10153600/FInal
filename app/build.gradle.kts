@@ -30,6 +30,8 @@ android {
             )
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -52,7 +54,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -65,13 +66,24 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    // Firebase dependencies for authentication and database
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Unit testing dependencies
+    testImplementation(libs.junit) // JUnit for unit testing
+    androidTestImplementation(libs.androidx.junit) // JUnit for Android tests
+    androidTestImplementation(libs.androidx.espresso.core) // Espresso for UI testing
+    androidTestImplementation(platform(libs.androidx.compose.bom)) // Compose testing
+    androidTestImplementation(libs.androidx.ui.test.junit4) // Jetpack Compose UI testing
+
+    // Debug dependencies for UI tool previews and testing
+    debugImplementation(libs.androidx.ui.tooling) // UI Tooling for preview
+    debugImplementation(libs.androidx.ui.test.manifest) // UI Test Manifest
+
+      // Mockito dependencies for mocking
+    testImplementation("org.mockito:mockito-core:5.4.0") // Mockito core library
+    testImplementation("org.mockito:mockito-inline:5.4.0") // Mockito for mocking final classes and methods
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0") // Mockito Kotlin extensions
 }

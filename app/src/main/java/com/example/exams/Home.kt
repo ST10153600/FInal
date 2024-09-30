@@ -13,6 +13,9 @@ import com.google.firebase.database.*
 
 class Home : AppCompatActivity() {
 
+    //The following information was taken from ChatGPT and modified for the recycler view
+    //Author: ChatGPT
+
     private lateinit var database: DatabaseReference
     private lateinit var taskRecyclerView: RecyclerView
     private lateinit var taskAdapter: TaskAdapter

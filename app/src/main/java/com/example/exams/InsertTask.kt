@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class InsertTask : AppCompatActivity() {
 
@@ -19,6 +22,10 @@ class InsertTask : AppCompatActivity() {
     private lateinit var dueDateInput: EditText
     private lateinit var descriptionInput: EditText
     private lateinit var submitTaskButton: Button
+
+    //Insert data into Firebase Realtime Database was taken from Youtube
+    //Author: CodingWithMitch
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,4 +131,15 @@ data class Task(
     val assessmentType: String,
     val dueDate: String,
     val description: String
-)
+) {
+    fun getTimeRemaining(): Long {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return try {
+            val dueDateObj = dateFormat.parse(dueDate)
+            val currentDate = Date()
+            dueDateObj?.time?.minus(currentDate.time) ?: 0
+        } catch (e: Exception) {
+            0
+        }
+    }
+}
