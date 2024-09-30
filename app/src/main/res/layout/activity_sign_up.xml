@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#D3E8FF"
+    android:padding="20dp"
+    android:gravity="center">
+
+    <!-- App Logo -->
+<ImageView
+android:id="@+id/signUpLogo"
+android:layout_width="wrap_content"
+android:layout_height="100dp"
+android:src="@drawable/designer"
+    android:contentDescription="App Logo"
+    android:layout_gravity="center"/>
+
+    <!-- Full Name Field -->
+<EditText
+android:id="@+id/fullNameInput"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Full Name"
+android:layout_marginTop="30dp"
+android:padding="10dp"
+android:backgroundTint="#808080"
+    android:textColor="#000000"
+    android:textColorHint="#808080"/>
+
+    <!-- Email Field -->
+<EditText
+android:id="@+id/signUpEmailInput"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Email"
+android:inputType="textEmailAddress"
+android:layout_marginTop="10dp"
+android:padding="10dp"
+android:backgroundTint="#808080"
+android:textColor="#000000"
+android:textColorHint="#808080"/>
+    <!-- Password Field -->
+
+<EditText
+android:id="@+id/signUpPasswordInput"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Password"
+android:inputType="textPassword"
+android:layout_marginTop="10dp"
+android:padding="10dp"
+android:backgroundTint="#808080"
+android:textColor="#000000"
+android:textColorHint="#808080"/>
+
+    <!-- Confirm Password Field -->
+<EditText
+android:id="@+id/confirmPasswordInput"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Confirm Password"
+android:inputType="textPassword"
+android:layout_marginTop="10dp"
+android:padding="10dp"
+android:backgroundTint="#808080"
+android:textColor="#000000"
+android:textColorHint="#808080"/>
+
+    <!-- Sign-Up Button -->
+<Button
+android:id="@+id/signUpButton"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Sign Up"
+android:layout_marginTop="30dp"
+android:backgroundTint="#808080"
+    android:textColor="#ffffff"/>
+    </LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#D3E8FF"
+    android:padding="20dp">
+
+    <!-- LinearLayout for Task Inputs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:paddingBottom="70dp">
+
+        <!-- New Task Heading -->
+        <TextView
+            android:id="@+id/newTaskHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Task"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Subject Field -->
+        <EditText
+            android:id="@+id/subjectInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Subject"
+            android:inputType="text"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:backgroundTint="#808080" />
+
+        <!-- Assessment Type Field -->
+        <EditText
+            android:id="@+id/assessmentTypeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Assessment Type"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:backgroundTint="#808080" />
+
+        <!-- Due Date Field -->
+        <EditText
+            android:id="@+id/dueDateInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Due Date"
+            android:inputType="date"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:backgroundTint="#808080" />
+
+        <!-- Description Field -->
+        <EditText
+            android:id="@+id/descriptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:backgroundTint="#808080" />
+
+        <!-- Submit/Save Button -->
+        <Button
+            android:id="@+id/submitTaskButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:backgroundTint="#808080"
+            android:textColor="#ffffff"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:background="#D3E8FF"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
