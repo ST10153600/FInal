@@ -17,6 +17,7 @@ class Settings: AppCompatActivity() {
     private lateinit var logoutButton: Button
     private lateinit var upgradeButton: Button
     private lateinit var auth: FirebaseAuth
+    private var isInitialSpinnerSetup = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +32,24 @@ class Settings: AppCompatActivity() {
 
         // Set up Language Change
         languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
-                when (position) {
-                    0 -> setLocale("en") // English
-                    1 -> setLocale("zu") // Zulu
-                    2 -> setLocale("st") // Sotho
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: android.view.View?,
+                position: Int,
+                id: Long
+            ) {
+                if (isInitialSpinnerSetup) {
+                    isInitialSpinnerSetup = false
+                } else {
+                    // Apply language change only if not initial setup to avoid screen twerking
+                    when (position) {
+                        0 -> setLocale("en")
+                        1 -> setLocale("zu")
+                        2 -> setLocale("st")
+                    }
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 

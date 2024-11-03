@@ -63,6 +63,12 @@ class Home : AppCompatActivity() {
                     Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
                     true
                 }
+                R.id.action_settings -> {
+                    // Navigate to SettingsActivity
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
+                    true
+                }
                 else -> false
             }
         }

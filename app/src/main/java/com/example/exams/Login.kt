@@ -10,8 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import java.util.concurrent.Executor
 
 class Login : AppCompatActivity() {
@@ -26,6 +32,7 @@ class Login : AppCompatActivity() {
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +47,10 @@ class Login : AppCompatActivity() {
         registerText = findViewById(R.id.registerText)
         biometricButton = findViewById(R.id.biometricButton) // Biometric button in the UI
 
-        // Biometric Authentication Setup
+        // Biometric Authentication Setup and Google Sign-In
         setupBiometricAuth()
+        setupGoogleSignIn()
+        initGoogleSignInButton()
 
         // Email/Password Login button onClick listener
         loginButton.setOnClickListener {
@@ -125,6 +134,54 @@ class Login : AppCompatActivity() {
             }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Log.w("LoginActivity", "Google sign in failed", e)
+            }
+        }
+    }
+
+
+    private fun setupGoogleSignIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+    }
+
+    private fun initGoogleSignInButton() {
+        val signInButton = findViewById<SignInButton>(R.id.googleSignInButton)
+        signInButton.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.d("LoginActivity", "signInWithCredential:success")
+                    val user = auth.currentUser
+                    navigateToHomeScreen()
+                } else {
+                    Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
+                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+
     // Navigate to Home Screen after successful login
     private fun navigateToHomeScreen() {
         val intent = Intent(this, Home::class.java)
@@ -148,5 +205,9 @@ class Login : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
     }
 }

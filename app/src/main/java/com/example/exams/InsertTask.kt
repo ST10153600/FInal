@@ -54,7 +54,7 @@ class InsertTask : AppCompatActivity() {
 
         // Bottom Navigation Bar setup
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottomNavigation)
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
+        bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     val intent = Intent(this, Home::class.java)
@@ -68,6 +68,11 @@ class InsertTask : AppCompatActivity() {
                 R.id.nav_profile -> {
                     // Show a pop-up
                     Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.action_settings -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
@@ -126,12 +131,15 @@ class InsertTask : AppCompatActivity() {
 }
 
 data class Task(
-    val id: String?,
-    val subject: String,
-    val assessmentType: String,
-    val dueDate: String,
-    val description: String
+    val id: String? = null,
+    val subject: String = "",
+    val assessmentType: String = "",
+    val dueDate: String = "",
+    val description: String = ""
 ) {
+    //I added this secondary constructor to handle no-argument scenario needed by Firebase
+    constructor() : this("", "", "", "", "")
+
     fun getTimeRemaining(): Long {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return try {
