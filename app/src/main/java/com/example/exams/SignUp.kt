@@ -3,19 +3,19 @@ package com.example.exams
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class SignUp : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var fullNameInput: EditText
-    private lateinit var signUpEmailInput: EditText
-    private lateinit var signUpPasswordInput: EditText
-    private lateinit var confirmPasswordInput: EditText
+    private lateinit var fullNameInput: TextInputEditText
+    private lateinit var signUpEmailInput: TextInputEditText
+    private lateinit var signUpPasswordInput: TextInputEditText
+    private lateinit var confirmPasswordInput: TextInputEditText
     private lateinit var signUpButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/white"
-    android:padding="20dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/white">
 
-    <TextView
-        android:id="@+id/subjectText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Subject"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/assessmentTypeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Assessment Type"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/subjectText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject"
+            android:textStyle="bold"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/dueDateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Due Date"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/assessmentTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assessment Type"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/descriptionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/dueDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Due Date"
+            android:textSize="14sp" />
 
-    <!-- Countdown Timer -->
-    <TextView
-        android:id="@+id/countdownTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Countdown"
-        android:textSize="16sp"
-        android:textColor="#FF0000"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="14sp" />
+
+        <!-- Countdown Timer -->
+        <TextView
+            android:id="@+id/countdownTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Countdown"
+            android:textSize="16sp"
+            android:textColor="#FF0000"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

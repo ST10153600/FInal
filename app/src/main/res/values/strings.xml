@@ -1,8 +1,33 @@
 <resources>
-    <string name="app_name">Exams</string>
+    <!-- App general strings -->
+    <string name="app_name">Structured Exams</string>
+    <string name="app_logo">App Logo</string>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"></style>
+    <!-- Login screen -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_with_biometrics">Login with Biometrics</string>
+    <string name="register_prompt">Don’t have an account? Click here to create.</string>
 
+    <!-- Error messages -->
+    <string name="error_fields_required">Please fill out all fields</string>
+    <string name="error_biometric_not_available">No biometric features available on this device</string>
+    <string name="error_biometric_unavailable">Biometric features are currently unavailable</string>
+    <string name="error_no_biometrics_enrolled">No biometric credentials registered</string>
+    <string name="authentication_error">Authentication error:</string>
+    <string name="authentication_failed">Authentication failed</string>
+    <string name="authentication_succeeded">Authentication succeeded!</string>
+    <string name="login_successful">Login successful!</string>
+    <string name="authentication_failure">Authentication failed.</string>
+
+    <!-- Biometric Prompt -->
+    <string name="biometric_login_title">Biometric Login for Structured Exams</string>
+    <string name="biometric_login_subtitle">Log in using your biometric credential</string>
+    <string name="use_account_password">Use account password</string>
+
+    <!-- Google Sign-In -->
+    <string name="google_sign_in_failed">Google sign in failed</string>
 
     <string name="default_web_client_id">306860544171-jesanam558pti8pi6ss15gih7v8kb6si.apps.googleusercontent.com</string>
 

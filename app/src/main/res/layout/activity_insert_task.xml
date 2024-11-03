@@ -1,84 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#D3E8FF"
+    android:background="@color/white"
     android:padding="20dp">
 
-    <!-- LinearLayout for Task Inputs -->
-    <LinearLayout
+    <!-- ScrollView for Task Inputs -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="top"
-        android:paddingBottom="70dp">
+        android:layout_height="match_parent">
 
-        <!-- New Task Heading -->
-        <TextView
-            android:id="@+id/newTaskHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Task"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginBottom="20dp" />
-
-        <!-- Subject Field -->
-        <EditText
-            android:id="@+id/subjectInput"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Subject"
-            android:inputType="text"
-            android:layout_marginTop="20dp"
-            android:padding="10dp"
-            android:backgroundTint="#808080" />
+            android:orientation="vertical"
+            android:layout_gravity="top">
 
-        <!-- Assessment Type Field -->
-        <EditText
-            android:id="@+id/assessmentTypeInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Assessment Type"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:backgroundTint="#808080" />
+            <!-- New Task Heading -->
+            <TextView
+                android:id="@+id/newTaskHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Task"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"/>
 
-        <!-- Due Date Field -->
-        <EditText
-            android:id="@+id/dueDateInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Due Date"
-            android:inputType="date"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:backgroundTint="#808080" />
+            <!-- Subject Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subjectInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_edittext_background"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
 
-        <!-- Description Field -->
-        <EditText
-            android:id="@+id/descriptionInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:backgroundTint="#808080" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subjectInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Subject"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Submit/Save Button -->
-        <Button
-            android:id="@+id/submitTaskButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:backgroundTint="#808080"
-            android:textColor="#ffffff"
-            android:layout_marginTop="20dp" />
-    </LinearLayout>
+            <!-- Assessment Type Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/assessmentTypeInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext_background"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/assessmentTypeInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Assessment Type"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Due Date Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dueDateInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext_background"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dueDateInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Due Date"
+                    android:inputType="date"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Description Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext_background"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descriptionInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Description"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Submit/Save Button -->
+            <Button
+                android:id="@+id/submitTaskButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_overlay"
+                android:text="Save"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -86,9 +136,8 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_gravity="bottom"
-        android:background="#D3E8FF"
+        app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:menu="@menu/bottom_nav_menu" />
+        app:itemTextColor="@color/black"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
