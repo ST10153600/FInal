@@ -1,4 +1,4 @@
-package com.example.exams
+package com.example.exams.com.example.exams.models
 
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit

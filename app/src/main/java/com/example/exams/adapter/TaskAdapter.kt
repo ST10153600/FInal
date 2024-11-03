@@ -1,4 +1,4 @@
-package com.example.exams
+package com.example.exams.com.example.exams.adapter
 
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.exams.R
+import com.example.exams.com.example.exams.models.Task
 
 class TaskAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 

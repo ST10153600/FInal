@@ -1,5 +1,6 @@
 package com.example.exams
 
+import com.example.exams.com.example.exams.models.Exam
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito.*

@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import java.util.concurrent.Executor
+import com.example.exams.com.example.exams.models.Task
 
 class Login : AppCompatActivity() {
 
@@ -184,27 +185,9 @@ class Login : AppCompatActivity() {
 
     // Navigate to Home Screen after successful login
     private fun navigateToHomeScreen() {
-        val intent = Intent(this, Home::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    // Settings Menu
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.bottom_nav_menu, menu)
-        return true
-    }
-
-    // Handle Settings menu selection
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                val intent = Intent(this, Settings::class.java)
-                startActivity(intent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     companion object {

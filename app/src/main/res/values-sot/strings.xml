@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App general strings -->
+    <string name="app_name">Structured Exams</string>
+    <string name="app_logo">Letshwao la App</string>
+
+    <!-- Login screen -->
+    <string name="email">Imeile</string>
+    <string name="password">Phasewete</string>
+    <string name="login">Kena</string>
+    <string name="login_with_biometrics">Kena ka biomentrics</string>
+    <string name="register_prompt">Ha o na akhaonto? Tobetsa mona ho theha e nngwe.</string>
+
+    <!-- Error messages -->
+    <string name="error_fields_required">Ka kopo tlatsa dibaka tsohle</string>
+    <string name="error_biometric_not_available">Ha ho na dikarolo tsa biometric tse fumanehang sesebeliseng sena</string>
+    <string name="error_biometric_unavailable">Dikarolo tsa biometric ha di fumanehe hajoale</string>
+    <string name="error_no_biometrics_enrolled">Ha ho na ditumello tsa biometric tse ngodisitsoeng</string>
+    <string name="authentication_error">Phoso ea netefatso:</string>
+    <string name="authentication_failed">Netefatso e hlolehile</string>
+    <string name="authentication_succeeded">Netefatso e atlehile!</string>
+    <string name="login_successful">Ho kena ho atlehile!</string>
+    <string name="authentication_failure">Netefatso e hlolehile.</string>
+
+    <!-- Biometric Prompt -->
+    <string name="biometric_login_title">Kena ka Biometric ho Structured Exams</string>
+    <string name="biometric_login_subtitle">Kena ka ho sebelisa tumello ea hau ea biometric</string>
+    <string name="use_account_password">Sebelisa phasewete ea akhaonto</string>
+
+    <!-- Google Sign-In -->
+    <string name="google_sign_in_failed">Ho kena ka Google ho hlolehile</string>
+
+    <!-- Language Selection -->
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>isiZulu</item>
+        <item>Sesotho</item>
+    </string-array>
+</resources>

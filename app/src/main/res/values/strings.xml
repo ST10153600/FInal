@@ -31,7 +31,7 @@
 
     <string name="default_web_client_id">306860544171-jesanam558pti8pi6ss15gih7v8kb6si.apps.googleusercontent.com</string>
 
-        <string-array name="languages_array">
+    <string-array name="languages_array">
         <item>English</item>
         <item>Zulu</item>
         <item>Sotho</item>

@@ -81,7 +81,8 @@ dependencies {
 
     // Room Database dependencies
     implementation("androidx.room:room-runtime:2.5.2") // Use the latest version
-    implementation("androidx.room:room-ktx:2.5.2") // For Kotlin extensions
+    implementation("androidx.room:room-ktx:2.5.2")
+    implementation(libs.firebase.storage.ktx) // For Kotlin extensions
 
     // Testing dependencies
     testImplementation(libs.junit)
@@ -98,4 +99,9 @@ dependencies {
     testImplementation("org.mockito:mockito-core:5.4.0")
     testImplementation("org.mockito:mockito-inline:5.4.0")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
+
+    // Glide for loading images
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
 }

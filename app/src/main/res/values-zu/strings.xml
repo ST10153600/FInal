@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App general strings -->
+    <string name="app_name">Structured Exams</string>
+    <string name="app_logo">Uphawu Lohlelo</string>
+
+    <!-- Login screen -->
+    <string name="email">I-imeyili</string>
+    <string name="password">Iphasiwedi</string>
+    <string name="login">Ngena</string>
+    <string name="login_with_biometrics">Ngena ngemininingwane yomzimba</string>
+    <string name="register_prompt">Awunayo i-akhawunti? Chofoza lapha ukuze udale.</string>
+
+    <!-- Error messages -->
+    <string name="error_fields_required">Sicela ugcwalise zonke izinkambu</string>
+    <string name="error_biometric_not_available">Ayikho imininingwane yomzimba etholakalayo kule divayisi</string>
+    <string name="error_biometric_unavailable">Imininingwane yomzimba ayitholakali okwamanje</string>
+    <string name="error_no_biometrics_enrolled">Ayikho imininingwane yomzimba ebhalisiwe</string>
+    <string name="authentication_error">Iphutha lokufakazela ubuqiniso:</string>
+    <string name="authentication_failed">Ukufakazela ubuqiniso kuhlulekile</string>
+    <string name="authentication_succeeded">Ukufakazela ubuqiniso kuphumelele!</string>
+    <string name="login_successful">Ukungena kuphumelele!</string>
+    <string name="authentication_failure">Ukufakazela ubuqiniso kuhlulekile.</string>
+
+    <!-- Biometric Prompt -->
+    <string name="biometric_login_title">Ngena nge-Biometric ku-Structured Exams</string>
+    <string name="biometric_login_subtitle">Ngena usebenzisa imininingwane yakho yomzimba</string>
+    <string name="use_account_password">Sebenzisa iphasiwedi ye-akhawunti</string>
+
+    <!-- Google Sign-In -->
+    <string name="google_sign_in_failed">Ukungena ku-Google kuhlulekile</string>
+
+    <!-- Language Selection -->
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>isiZulu</item>
+        <item>Sesotho</item>
+    </string-array>
+</resources>
