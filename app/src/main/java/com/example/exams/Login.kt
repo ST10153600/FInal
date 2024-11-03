@@ -10,34 +10,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
 import java.util.concurrent.Executor
 
 class Login : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var emailInput: EditText
     private lateinit var passwordInput: EditText
     private lateinit var loginButton: Button
-    private lateinit var googleSignInButton: Button
     private lateinit var registerText: TextView
     private lateinit var biometricButton: Button // Button for biometric authentication
 
     private lateinit var executor: Executor
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
-
-    companion object {
-        private const val RC_SIGN_IN = 9001
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,25 +34,11 @@ class Login : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        // Configure Google Sign-In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
         emailInput = findViewById(R.id.emailInput)
         passwordInput = findViewById(R.id.passwordInput)
         loginButton = findViewById(R.id.loginButton)
-        googleSignInButton = findViewById(R.id.googleSignInButton)
         registerText = findViewById(R.id.registerText)
-        biometricButton = findViewById(R.id.biometricButton)
-
-        // Google Sign-In Button onClick listener
-        googleSignInButton.setOnClickListener {
-            signInWithGoogle()
-        }
+        biometricButton = findViewById(R.id.biometricButton) // Biometric button in the UI
 
         // Biometric Authentication Setup
         setupBiometricAuth()
@@ -88,41 +62,6 @@ class Login : AppCompatActivity() {
         }
     }
 
-    private fun signInWithGoogle() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account)
-            } catch (e: ApiException) {
-                Log.w("LoginActivity", "Google sign-in failed", e)
-                Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
-        val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user: FirebaseUser? = auth.currentUser
-                    Log.d("LoginActivity", "signInWithCredential:success")
-                    Toast.makeText(this, "Google sign-in successful!", Toast.LENGTH_SHORT).show()
-                    navigateToHomeScreen()
-                } else {
-                    Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
-                    Toast.makeText(this, "Google authentication failed.", Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
     // Biometric Authentication Setup
     private fun setupBiometricAuth() {
         val biometricManager = BiometricManager.from(this)
@@ -138,6 +77,7 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this, "No biometric credentials registered", Toast.LENGTH_SHORT).show()
         }
 
+        // Set up BiometricPrompt
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
             override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
@@ -163,6 +103,7 @@ class Login : AppCompatActivity() {
             .setNegativeButtonText("Use account password")
             .build()
 
+        // Biometric button onClick listener
         biometricButton.setOnClickListener {
             biometricPrompt.authenticate(promptInfo)
         }
