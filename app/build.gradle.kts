@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.google.gms.google.services)
+     alias(libs.plugins.google.gms.google.services) // Google services plugin
 }
 
 android {
@@ -31,21 +31,24 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
         viewBinding = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -54,6 +57,7 @@ android {
 }
 
 dependencies {
+    // AndroidX and Material dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -66,24 +70,32 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
-    // Firebase dependencies for authentication and database
+    // Firebase Authentication and Database
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
 
-    // Unit testing dependencies
-    testImplementation(libs.junit) // JUnit for unit testing
-    androidTestImplementation(libs.androidx.junit) // JUnit for Android tests
-    androidTestImplementation(libs.androidx.espresso.core) // Espresso for UI testing
-    androidTestImplementation(platform(libs.androidx.compose.bom)) // Compose testing
-    androidTestImplementation(libs.androidx.ui.test.junit4) // Jetpack Compose UI testing
+    // Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
-    // Debug dependencies for UI tool previews and testing
-    debugImplementation(libs.androidx.ui.tooling) // UI Tooling for preview
-    debugImplementation(libs.androidx.ui.test.manifest) // UI Test Manifest
+    // Room Database dependencies
+    implementation("androidx.room:room-runtime:2.5.2") // Use the latest version
+    implementation("androidx.room:room-ktx:2.5.2") // For Kotlin extensions
 
-      // Mockito dependencies for mocking
-    testImplementation("org.mockito:mockito-core:5.4.0") // Mockito core library
-    testImplementation("org.mockito:mockito-inline:5.4.0") // Mockito for mocking final classes and methods
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0") // Mockito Kotlin extensions
+    // Testing dependencies
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+
+    // Debug dependencies
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Mockito for testing
+    testImplementation("org.mockito:mockito-core:5.4.0")
+    testImplementation("org.mockito:mockito-inline:5.4.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
 }
