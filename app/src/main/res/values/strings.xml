@@ -30,6 +30,8 @@
     <string name="google_sign_in_failed">Google sign in failed</string>
 
     <string name="default_web_client_id">306860544171-jesanam558pti8pi6ss15gih7v8kb6si.apps.googleusercontent.com</string>
+    <string name="login_prompt">Already have an account? Click here to Login</string>
+    <string name="enter_date">Enter date (e.g., 2024-11-15)</string>
 
     <string-array name="languages_array">
         <item>English</item>

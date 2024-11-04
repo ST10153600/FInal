@@ -1,11 +1,13 @@
 package com.example.exams
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -16,6 +18,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var signUpEmailInput: TextInputEditText
     private lateinit var signUpPasswordInput: TextInputEditText
     private lateinit var confirmPasswordInput: TextInputEditText
+    private lateinit var signInText: TextView
     private lateinit var signUpButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +32,7 @@ class SignUp : AppCompatActivity() {
         signUpEmailInput = findViewById(R.id.signUpEmailInput)
         signUpPasswordInput = findViewById(R.id.signUpPasswordInput)
         confirmPasswordInput = findViewById(R.id.confirmPasswordInput)
+        signInText = findViewById(R.id.signInText)
         signUpButton = findViewById(R.id.signUpButton)
 
 
@@ -42,6 +46,12 @@ class SignUp : AppCompatActivity() {
             if (validateInput(fullName, email, password, confirmPassword)) {
                 createAccount(email, password)
             }
+        }
+
+        // Login text listener
+         signInText.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
         }
     }
 

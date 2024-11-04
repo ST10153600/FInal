@@ -11,17 +11,22 @@ data class Task(
     val dueDate: String = "",
     val description: String = ""
 ) {
-    //I added this secondary constructor to handle no-argument scenario needed by Firebase
+    // Secondary constructor for Firebase
     constructor() : this("", "", "", "", "")
 
     fun getTimeRemaining(): Long {
+        // Adjusted to match date and time if needed, e.g., "yyyy-MM-dd HH:mm:ss"
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return try {
-            val dueDateObj = dateFormat.parse(dueDate)
+            val dueDateObj: Date? = dateFormat.parse(dueDate)
             val currentDate = Date()
-            dueDateObj?.time?.minus(currentDate.time) ?: 0
+            if (dueDateObj != null && dueDateObj.after(currentDate)) {
+                dueDateObj.time - currentDate.time
+            } else {
+                0 // Return 0 if the date is in the past or null
+            }
         } catch (e: Exception) {
-            0
+            0 // Return 0 if parsing fails
         }
     }
 }

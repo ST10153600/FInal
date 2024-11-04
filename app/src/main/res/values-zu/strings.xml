@@ -29,6 +29,8 @@
 
     <!-- Google Sign-In -->
     <string name="google_sign_in_failed">Ukungena ku-Google kuhlulekile</string>
+    <string name="login_prompt">Usuvele unayo i-akhawunti? Chofoza lapha ukuze ungene</string>
+
 
     <!-- Language Selection -->
     <string-array name="languages_array">

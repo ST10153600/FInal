@@ -76,13 +76,15 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
 
+
     // Google Sign-In
     implementation("com.google.android.gms:play-services-auth:20.7.0")
 
     // Room Database dependencies
     implementation("androidx.room:room-runtime:2.5.2") // Use the latest version
     implementation("androidx.room:room-ktx:2.5.2")
-    implementation(libs.firebase.storage.ktx) // For Kotlin extensions
+    implementation(libs.firebase.storage.ktx)
+    implementation(libs.firebase.messaging) // For Kotlin extensions
 
     // Testing dependencies
     testImplementation(libs.junit)

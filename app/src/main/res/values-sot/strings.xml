@@ -29,6 +29,8 @@
 
     <!-- Google Sign-In -->
     <string name="google_sign_in_failed">Ho kena ka Google ho hlolehile</string>
+    <string name="login_prompt">Na u se u na le akhaonte? Tobetsa mona ho kena</string>
+
 
     <!-- Language Selection -->
     <string-array name="languages_array">

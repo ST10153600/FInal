@@ -26,21 +26,18 @@ class TaskAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TaskA
     }
 
     inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Views for task details
         private val subjectTextView: TextView = itemView.findViewById(R.id.subjectText)
         private val assessmentTypeTextView: TextView = itemView.findViewById(R.id.assessmentTypeText)
         private val dueDateTextView: TextView = itemView.findViewById(R.id.dueDateText)
         private val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionText)
-        private val countdownTextView: TextView = itemView.findViewById(R.id.countdownTextView) // TextView for the countdown
+        private val countdownTextView: TextView = itemView.findViewById(R.id.countdownTextView)
 
         fun bind(task: Task) {
-            // Bind task details
             subjectTextView.text = task.subject
             assessmentTypeTextView.text = task.assessmentType
             dueDateTextView.text = task.dueDate
             descriptionTextView.text = task.description
 
-            // Start countdown
             val timeRemaining = task.getTimeRemaining()
             if (timeRemaining > 0) {
                 startCountdown(timeRemaining, countdownTextView)
@@ -48,8 +45,6 @@ class TaskAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TaskA
                 countdownTextView.text = "Expired"
             }
         }
-
-        //
 
         private fun startCountdown(timeInMillis: Long, countdownTextView: TextView) {
             object : CountDownTimer(timeInMillis, 1000) {
