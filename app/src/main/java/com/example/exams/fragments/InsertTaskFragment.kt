@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.exams.R
 import com.example.exams.com.example.exams.models.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -50,42 +51,65 @@ class InsertTaskFragment : Fragment() {
         return view
     }
 
-    private fun validateInput(subject: String, assessmentType: String, dueDate: String, description: String): Boolean {
+    private fun validateInput(
+        subject: String,
+        assessmentType: String,
+        dueDate: String,
+        description: String
+    ): Boolean {
         return when {
             subject.isEmpty() -> {
                 subjectInput.error = "Subject is required"
                 false
             }
+
             assessmentType.isEmpty() -> {
                 assessmentTypeInput.error = "Assessment Type is required"
                 false
             }
+
             dueDate.isEmpty() -> {
                 dueDateInput.error = "Due Date is required"
                 false
             }
+
             description.isEmpty() -> {
                 descriptionInput.error = "Description is required"
                 false
             }
+
             else -> true
         }
     }
 
-    private fun saveTaskToDatabase(subject: String, assessmentType: String, dueDate: String, description: String) {
-        val taskId = database.child("tasks").push().key
-        val task = Task(taskId, subject, assessmentType, dueDate, description)
+    private fun saveTaskToDatabase(
+        subject: String,
+        assessmentType: String,
+        dueDate: String,
+        description: String
+    ) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val taskId = database.child("tasks").child(userId).push().key // Save under userId path
+            val task = Task(taskId, subject, assessmentType, dueDate, description)
 
-        taskId?.let {
-            database.child("tasks").child(it).setValue(task)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(context, "Task added successfully!", Toast.LENGTH_SHORT).show()
-                        clearFields()
-                    } else {
-                        Toast.makeText(context, "Failed to add task.", Toast.LENGTH_SHORT).show()
+            taskId?.let {
+                database.child("tasks").child(userId).child(it)
+                    .setValue(task) // Save to the correct user path
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(context, "Task added successfully!", Toast.LENGTH_SHORT)
+                                .show()
+                            clearFields()
+                        } else {
+                            Toast.makeText(context, "Failed to add task.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
-                }
+            }
+        } else {
+            Toast.makeText(context, "User not authenticated.", Toast.LENGTH_SHORT).show()
         }
     }
 
