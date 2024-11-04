@@ -1,5 +1,6 @@
 package com.example.exams
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import java.util.concurrent.Executor
 import com.example.exams.com.example.exams.models.Task
+import com.example.exams.fragments.HomeFragment
 
 class Login : AppCompatActivity() {
 
@@ -38,6 +40,12 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // Check if user is already logged in
+        if (isUserLoggedIn()) {
+            navigateToHomeScreen()
+            return
+        }
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -72,6 +80,20 @@ class Login : AppCompatActivity() {
         }
     }
 
+    // Check if user is already logged in
+    private fun isUserLoggedIn(): Boolean {
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("isLoggedIn", false)
+    }
+
+    // Save Login Status
+    private fun saveLoginStatus(isLoggedIn: Boolean) {
+        val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isLoggedIn", isLoggedIn)
+        editor.apply()
+    }
+
     // Biometric Authentication Setup
     private fun setupBiometricAuth() {
         val biometricManager = BiometricManager.from(this)
@@ -98,6 +120,7 @@ class Login : AppCompatActivity() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
                 Toast.makeText(this@Login, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+                saveLoginStatus(true) // Mark as logged in
                 navigateToHomeScreen()
             }
 
@@ -127,6 +150,7 @@ class Login : AppCompatActivity() {
                     val user: FirebaseUser? = auth.currentUser
                     Log.d("LoginActivity", "signInWithEmail:success")
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    saveLoginStatus(true) // Mark as logged in
                     navigateToHomeScreen()
                 } else {
                     Log.w("LoginActivity", "signInWithEmail:failure", task.exception)
@@ -148,7 +172,6 @@ class Login : AppCompatActivity() {
             }
         }
     }
-
 
     private fun setupGoogleSignIn() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -174,6 +197,7 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Log.d("LoginActivity", "signInWithCredential:success")
                     val user = auth.currentUser
+                    saveLoginStatus(true) // Mark as logged in
                     navigateToHomeScreen()
                 } else {
                     Log.w("LoginActivity", "signInWithCredential:failure", task.exception)
@@ -181,7 +205,6 @@ class Login : AppCompatActivity() {
                 }
             }
     }
-
 
     // Navigate to Home Screen after successful login
     private fun navigateToHomeScreen() {
